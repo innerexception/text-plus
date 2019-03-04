@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onParseInput: (userInput) => {
-            dispatch(parseInput(userInput));
+        onParseInput: (userInput, scene) => {
+            dispatch(parseInput(userInput, scene));
         }
     }
 };

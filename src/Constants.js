@@ -9,11 +9,11 @@ export default {
                 choices: [
                     {
                         value: 'Answer 1',
-                        target: 1
+                        scene: 1
                     },
                     {
                         value: 'Answer 2',
-                        target: 2
+                        scene: 2
                     }
                 ]
             },
@@ -25,11 +25,11 @@ export default {
                 choices: [
                     {
                         value: 'Answer 1',
-                        target: 1
+                        scene: 1
                     },
                     {
                         value: 'Answer 2',
-                        target: 2
+                        scene: 2
                     }
                 ]
             },
@@ -41,11 +41,11 @@ export default {
                 choices: [
                     {
                         value: 'Answer 1',
-                        target: 1
+                        scene: 1
                     },
                     {
                         value: 'Answer 2',
-                        target: 2
+                        scene: 2
                     }
                 ]
             }
