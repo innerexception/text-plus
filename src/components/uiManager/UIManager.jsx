@@ -1,38 +1,48 @@
 import React from 'react';
 import './UIManager.css';
-import { getOthelloBoard, getIndicatorClassName } from './UIManagerHelper.js';
-import { newGame } from './UIManagerActions.js';
+import { newSession } from '../../actions/Actions';
+import AppStyles from '../../AppStyles'
 
-class UIManager extends React.Component {
+export default class UIManager extends React.Component {
     constructor(props){
         super(props);
     };
 
     componentDidMount(){
-        this.props.store.dispatch(newGame());
+        this.props.store.dispatch(newSession());
     };
+
+    parseInput = () => {
+        this.props.onParseInput(this.state.currentInput)
+        this.setState({currentInput:''})
+    }
 
     render(){
         return (
             <div className='ui-frame'>
-                <div className='ui-top-bar'>
-                    <div className='inline-div title'>Othello</div>
-                    <div className='inline-div pass'>{this.props.viewState.winner ? 'Winner!' : this.props.viewState.legalMoveExists ? '' : 'Pass'}</div>
-                    <div className='inline-div score'>
-                        <div className='piece player-one'></div>
-                        <div>{this.props.viewState.playerOneScore}</div>
-                    </div>
-                    <div className='inline-div score'>
-                        <div className='piece player-two'></div>
-                        <div>{this.props.viewState.playerTwoScore}</div>
-                    </div>
-                    <div className='inline-div new-game' title='Start a new game' onClick={this.props.onNewGameClick}></div>
-                    <div className={getIndicatorClassName(this.props.viewState)} title='Current player turn' onClick={this.props.viewState.legalMoveExists ? null : this.props.onPassClicked}></div>
+                <div style={styles.rowPanel}>
+                    {Object.keys(viewState.stats).map((key) => 
+                        <div>
+                            <div>{key}</div>
+                            <div>{viewState.stats[key]}</div>
+                        </div>
+                    )}
                 </div>
-                { getOthelloBoard(this.props.viewState, this.props.onSpaceMouseOver, this.props.onSpaceClick) }
+                <div style={styles.rowPanel}>
+                    {viewState.scene.paragraphs.map((p) => <p>{p}</p>)}
+                    <input type='text' 
+                           onKeyPress={(e)=>e.key==='Enter' && this.parseInput()} 
+                           onChange={(e)=>this.setState({currentInput: e.currentTarget.value})}/>
+                </div>
             </div>
         )
     }
 }
 
-export default UIManager
+
+const styles = {
+    rowPanel: {
+        ...AppStyles.rowSpcCtr,
+        height: '100%'
+    }
+}

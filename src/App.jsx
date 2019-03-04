@@ -1,5 +1,5 @@
 import React from 'react';
-import UIStateContainer from './uiManager/UIStateContainer.js';
+import UIStateContainer from './components/uiManager/UIStateContainer.js';
 import './App.css';
 
 class App extends React.Component {
