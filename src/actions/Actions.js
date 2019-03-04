@@ -1,11 +1,20 @@
+import Constants from "../Constants";
+
 export const newSession = () => {
     return {
-        type: 'NEW_GAME'
+        type: 'NEW_SESSION'
     }
 };
 
 export const parseInput = (userInput, scene) => {
-    return {
-        type: 'NEW_GAME'
-    }
+    const nextScene = scene.choices.find((choice) => choice.type==='scene' && choice.value===userInput)
+    if(nextScene)
+        return {
+            type: 'SCENE_TRANSITION',
+            nextScene: Constants.Bestiary.scenes[nextScene]
+        }
+    else 
+        return {
+            type: 'UNKNOWN_INPUT'
+        }
 };

@@ -5,7 +5,7 @@ import AppStyles from '../../AppStyles'
 export default class UIManager extends React.Component {
 
     parseInput = () => {
-        this.props.onParseInput(this.state.currentInput)
+        this.props.onParseInput(this.state.currentInput, this.props.scene)
         this.setState({currentInput:''})
     }
 
