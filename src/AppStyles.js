@@ -3,6 +3,13 @@ export default {
         display:'flex',
         flexDirection: 'row',
         alignItems:'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap'
+    },
+    colSpcCtr: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around'
     }
 }

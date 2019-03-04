@@ -1,42 +1,46 @@
-var webpack = require('webpack');
+const path = require('path')
 module.exports = {
     entry: [
         "./index.js"
     ],
     output: {
-        path: './build',
-        filename: "bundle.js"
+        path: path.join(__dirname, './build'),
+        filename: 'bundle.js',
+        publicPath: '/',
     },
     devtool: 'source-map',
     module: {
-        loaders: [
-            { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel', query: {presets:['react','es2015', 'stage-0']}},
-            { test: /\.css$/, loader: "style!css" },
+        rules: [{
+                test: /\.css$/,
+                use: [{
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ]
+            },
             {
-                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url?limit=10000&mimetype=application/font-woff"
-            }, {
-                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url?limit=10000&mimetype=application/font-woff"
-            }, {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url?limit=10000&mimetype=application/octet-stream"
-            }, {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file"
-            }, {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url?limit=10000&mimetype=image/svg+xml"
-            }, {
-                test: /\.png$/,
-                loader: "url-loader?mimetype=image/png"
-            }, {
-                test: /\.jpg/,
-                loader: "url-loader?mimetype=image/jpg"
+                test: /\.tsx?$/,
+                loader: "ts-loader",
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                use: [{
+                    loader: 'url-loader?limit=100000',
+                }]
+            },
+            {
+                test: /sw.(j|t)s$/,
+                use: [{
+                    loader: 'file-loader',
+                }]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
             }
-        ]
+        ],
     },
-    plugins: [
-        new webpack.NoErrorsPlugin()
-    ]
 };

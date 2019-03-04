@@ -1,8 +1,7 @@
-import ReactDOM from 'react-dom';
-import Constants from '../Constants.js'
-import { getInitialViewState, getFlankedNeighborPositions, flipFlankedNeighbors, doesValidMoveExist } from './UIManagerReducerHelper.js'
 
-const appReducer = (state = {}, action) => {
+import { getInitialViewState } from './UIManagerReducerHelper.js'
+
+const appReducer = (state = getInitialViewState(), action) => {
     switch (action.type) {
         case 'NEW_GAME':
             return getInitialViewState();

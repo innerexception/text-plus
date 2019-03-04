@@ -5,8 +5,6 @@ export const newSession = () => {
 };
 
 export const parseInput = (userInput, scene) => {
-    
-
     return {
         type: 'NEW_GAME'
     }

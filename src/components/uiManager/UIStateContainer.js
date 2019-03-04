@@ -4,7 +4,7 @@ import { getInitialViewState } from './UIManagerReducerHelper.js';
 import UIManager from './UIManager.jsx'
 
 const mapStateToProps = (state) => {
-    return state || getInitialViewState();
+    return state
 };
 
 const mapDispatchToProps = (dispatch) => {
